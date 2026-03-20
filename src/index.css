@@ -1,0 +1,502 @@
+/* Fonts loaded asynchronously via index.html */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Deep green background matching original brand */
+    --background: 165 35% 12%;
+    --foreground: 0 0% 98%;
+
+    /* Pure white for overlays and text */
+    --white: 0 0% 100%;
+
+    /* Cards with subtle green tint */
+    --card: 165 30% 15%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 165 30% 15%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Gold/Yellow primary for contrast - WCAG AA compliant */
+    --primary: 45 90% 50%;
+    --primary-foreground: 165 40% 8%;
+
+    /* Darker green secondary */
+    --secondary: 165 30% 18%;
+    --secondary-foreground: 0 0% 95%;
+
+    /* Muted - increased lightness for 4.5:1 contrast ratio */
+    --muted: 165 25% 20%;
+    --muted-foreground: 0 0% 80%;
+
+    /* Gold/Yellow accent matching the logo - WCAG compliant */
+    --accent: 45 95% 52%;
+    --accent-foreground: 165 40% 8%;
+
+    /* Destructive */
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders and inputs */
+    --border: 165 20% 28%;
+    --input: 165 20% 22%;
+    --ring: 45 90% 50%;
+
+    --radius: 0.25rem;
+
+    /* Typography */
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Inter', system-ui, sans-serif;
+
+    /* Spacing */
+    --section-padding: 5rem;
+    --content-max-width: 72rem;
+    --reading-max-width: 40rem;
+
+    /* Text shadow for overlay readability */
+    --text-shadow-overlay: 0 1px 3px hsl(0 0% 0% / 0.5), 0 2px 8px hsl(0 0% 0% / 0.3);
+    --text-shadow-strong: 0 2px 4px hsl(0 0% 0% / 0.6), 0 4px 12px hsl(0 0% 0% / 0.4);
+
+    /* Sidebar */
+    --sidebar-background: 165 30% 15%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 45 90% 50%;
+    --sidebar-primary-foreground: 165 40% 8%;
+    --sidebar-accent: 165 25% 20%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 165 20% 28%;
+    --sidebar-ring: 45 90% 50%;
+  }
+
+  .dark {
+    /* Keep the same dark green theme for dark mode - WCAG 2.1 compliant */
+    --background: 165 35% 8%;
+    --foreground: 0 0% 98%;
+
+    --white: 0 0% 100%;
+
+    --card: 165 30% 10%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 165 30% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 45 90% 50%;
+    --primary-foreground: 165 40% 8%;
+
+    --secondary: 165 30% 14%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 165 25% 16%;
+    --muted-foreground: 0 0% 80%;
+
+    --accent: 45 95% 52%;
+    --accent-foreground: 165 40% 8%;
+
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 165 20% 25%;
+    --input: 165 20% 18%;
+    --ring: 45 90% 50%;
+
+    --sidebar-background: 165 30% 10%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 45 90% 50%;
+    --sidebar-primary-foreground: 165 40% 8%;
+    --sidebar-accent: 165 25% 16%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 165 20% 25%;
+    --sidebar-ring: 45 90% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-medium tracking-tight text-primary;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl leading-tight;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl leading-tight;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl leading-snug;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+
+  /* Global text justification with compact word spacing */
+  p, li, span.justify-text, .prose-content, .text-muted-foreground {
+    @apply leading-relaxed;
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
+    -moz-hyphens: none !important;
+    -ms-hyphens: none !important;
+    overflow-wrap: break-word;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Justify content paragraphs with compact word spacing */
+  .prose-content p,
+  section > .container-site p,
+  .texto-compacto,
+  .text-compact-justify {
+    text-align: left;
+    word-spacing: normal;
+    letter-spacing: normal;
+  }
+
+  /* Desktop: Apply justify with negative word-spacing for tighter text */
+  @media (min-width: 900px) {
+    .prose-content p,
+    section > .container-site p,
+    .texto-compacto,
+    .text-compact-justify {
+      text-align: justify;
+      text-justify: inter-word;
+      word-spacing: -0.05em;
+      letter-spacing: -0.01em;
+    }
+
+    /* Fallback for browsers without text-justify support */
+    @supports not (text-justify: inter-word) {
+      .prose-content p,
+      section > .container-site p,
+      .texto-compacto,
+      .text-compact-justify {
+        text-align: justify;
+        word-spacing: -0.06em;
+      }
+    }
+  }
+
+  /* Tablet breakpoint (600px - 900px) */
+  @media (min-width: 600px) and (max-width: 899px) {
+    .prose-content p,
+    section > .container-site p,
+    .texto-compacto,
+    .text-compact-justify {
+      text-align: justify;
+      text-justify: inter-word;
+      word-spacing: -0.03em;
+      letter-spacing: normal;
+    }
+  }
+
+  /* Mobile: Left-aligned for readability */
+  @media (max-width: 599px) {
+    .prose-content p,
+    section > .container-site p,
+    .texto-compacto,
+    .text-compact-justify {
+      text-align: left;
+      word-spacing: normal;
+      letter-spacing: normal;
+    }
+  }
+
+  /* Ultra-compact text utility - stronger negative spacing */
+  .text-no-wrap-words,
+  .texto-ultra-compacto {
+    text-align: justify;
+    text-justify: inter-word;
+    word-spacing: -0.08em;
+    letter-spacing: -0.02em;
+  }
+
+  @media (max-width: 599px) {
+    .text-no-wrap-words,
+    .texto-ultra-compacto {
+      text-align: left;
+      word-spacing: -0.02em;
+      letter-spacing: normal;
+    }
+  }
+
+  /* Mobile justified text - justify on desktop/tablet, left-align on mobile for readability */
+  .text-mobile-justified {
+    text-align: justify !important;
+    text-justify: inter-word;
+    word-spacing: -0.05em;
+    letter-spacing: -0.015em;
+    line-height: 1.5 !important;
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
+    -moz-hyphens: none !important;
+    -ms-hyphens: none !important;
+    text-align-last: left;
+  }
+
+  /* Mobile: Left-aligned for clean readability without gaps */
+  @media (max-width: 599px) {
+    .text-mobile-justified {
+      text-align: left !important;
+      line-height: 1.45 !important;
+      word-spacing: normal;
+      letter-spacing: normal;
+      text-align-last: auto;
+    }
+  }
+
+  /* Mobile-only justified text - justified ONLY on mobile devices */
+  .text-mobile-only-justified {
+    text-align: left;
+    word-spacing: normal;
+    letter-spacing: normal;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 599px) {
+    .text-mobile-only-justified {
+      text-align: justify !important;
+      text-justify: inter-word;
+      word-spacing: -0.02em;
+      letter-spacing: -0.01em;
+      line-height: 1.5 !important;
+      hyphens: none !important;
+      -webkit-hyphens: none !important;
+      text-align-last: left;
+    }
+  }
+
+  /* Text over video/gradient backgrounds - WCAG compliant with halo effect */
+  .text-overlay-accessible {
+    text-shadow: var(--text-shadow-overlay);
+  }
+
+  .text-overlay-strong {
+    text-shadow: var(--text-shadow-strong);
+  }
+
+  /* High contrast text utility for critical content */
+  .text-high-contrast {
+    color: hsl(0 0% 100%);
+    text-shadow: 0 1px 2px hsl(0 0% 0% / 0.8);
+  }
+
+  /* Prevent orphans and widows for better typography */
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Footer and address elements should NOT be justified */
+  footer p,
+  footer span,
+  footer li,
+  footer a,
+  address,
+  .no-justify {
+    text-align: left !important;
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+
+  .prose-content {
+    @apply max-w-prose mx-auto;
+  }
+
+  .heading-line {
+    @apply relative pb-4 mb-6;
+  }
+
+  .heading-line::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-16 h-0.5 bg-accent;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  .link-underline {
+    @apply relative;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-px bg-current transition-all duration-300;
+  }
+
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+    will-change: opacity;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+    will-change: opacity, transform;
+  }
+
+  /* Reduce reflow scope for fixed elements */
+  .fixed {
+    contain: layout style;
+  }
+
+  /* Visual enhancement filters for hero images and videos */
+  .image-enhance {
+    filter: contrast(1.1) saturate(1.18) brightness(1.03);
+  }
+
+  .image-enhance-strong {
+    filter: contrast(1.15) saturate(1.25) brightness(1.05);
+  }
+
+  .video-enhance {
+    filter: contrast(1.10) saturate(0.92) brightness(1.0) hue-rotate(-8deg);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes tooltipEntrance {
+    0% {
+      opacity: 0;
+      transform: translateY(10px) scale(0.95);
+    }
+    50% {
+      transform: translateY(-5px) scale(1.02);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .animate-tooltip-entrance {
+    animation: tooltipEntrance 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    will-change: opacity, transform;
+  }
+
+  /* Optimize ping animation to reduce reflows */
+  .animate-ping {
+    will-change: transform, opacity;
+  }
+
+  /* Image optimization utilities */
+  .img-responsive {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Lazy loading fade-in effect */
+  .img-lazy {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .img-lazy.loaded {
+    opacity: 1;
+  }
+
+  /* Aspect ratio containers for preventing layout shift */
+  .aspect-hero {
+    aspect-ratio: 16 / 9;
+  }
+
+  .aspect-portrait {
+    aspect-ratio: 3 / 4;
+  }
+
+  .aspect-square {
+    aspect-ratio: 1 / 1;
+  }
+
+  /* Object-fit utilities for images */
+  .img-cover {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .img-contain {
+    object-fit: contain;
+    object-position: center;
+  }
+
+  /* Performance optimizations for images */
+  .img-optimize {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  /* Content-visibility for off-screen images */
+  .img-offscreen {
+    content-visibility: auto;
+    contain-intrinsic-size: 300px 200px;
+  }
+}
+
+/* Hero video slow panoramic pan */
+@keyframes heroPan {
+  0% { transform: scale(1.15) translateX(-3%); }
+  50% { transform: scale(1.15) translateX(3%); }
+  100% { transform: scale(1.15) translateX(-3%); }
+}

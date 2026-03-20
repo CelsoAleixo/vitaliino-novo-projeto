@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://rvitalinoadvogados.com.br/sitemap.xml
+
+# Rodrigo Vitalino Advogados
+# https://rvitalinoadvogados.com.br
